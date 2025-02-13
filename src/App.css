@@ -1,0 +1,40 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    padding-top: 80px; /* Default for large screens */
+  }
+  
+  /* Responsive Padding */
+  @media (max-width: 1024px) {  /* Tablets & smaller desktops */
+    body {
+      padding-top: 80px;
+    }
+  }
+  
+  @media (max-width: 768px) {  /* Tablets & Large Phones */
+    body {
+      padding-top: 90px;
+    }
+  }
+  
+  @media (max-width: 480px) {  /* Small Phones */
+    body {
+      padding-top: 130px;
+    }
+  }
+  
+  @media (min-width: 360px) and (max-width: 470px) {  /* Extra Small Phones */
+    body {
+      padding-top: 150px;
+    }
+  }
+  
+  
