@@ -84,12 +84,12 @@
 // export default App
 
 import { useState, useCallback } from 'react';
-import { Route, Routes, Navigate } from 'react-router-dom';
+import { Route, Routes, Navigate, useLocation } from 'react-router-dom';
 
 import LoginForm from './components/LoginForm';
 import Home from './components/Home';
 import Products from './components/Products';
-import PrimeDealsSection from './components/ProductItemDeatils'; // Fixed import name
+import PrimeDealsSection from './components/ProductItemDeatils';
 import Cart from './components/Cart';
 import NotFound from './components/NotFound';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -98,6 +98,9 @@ import CartContext from './context/CartContext';
 import './App.css';
 
 const App = () => {
+  const location = useLocation();
+  const isLoginPage = location.pathname === '/login';
+
   const [cartList, setCartList] = useState([]);
 
   const removeAllCartItems = useCallback(() => {
@@ -153,20 +156,22 @@ const App = () => {
         removeAllCartItems,
       }}
     >
-      <Routes>
-        <Route path="/login" element={<LoginForm />} />
-        
-        {/* Protected Routes Wrapper */}
-        <Route element={<ProtectedRoute />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/products" element={<Products />} />
-          <Route path="/products/:id" element={<PrimeDealsSection />} />
-          <Route path="/cart" element={<Cart />} />
-        </Route>
+      
+      <div className={!isLoginPage ? 'main-content' : ''}>
+        <Routes>
+          <Route path="/login" element={<LoginForm />} />
 
-        <Route path="/not-found" element={<NotFound />} />
-        <Route path="*" element={<Navigate to="/not-found" replace />} />
-      </Routes>
+          <Route element={<ProtectedRoute />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/products/:id" element={<PrimeDealsSection />} />
+            <Route path="/cart" element={<Cart />} />
+          </Route>
+
+          <Route path="/not-found" element={<NotFound />} />
+          <Route path="*" element={<Navigate to="/not-found" replace />} />
+        </Routes>
+      </div>
     </CartContext.Provider>
   );
 };

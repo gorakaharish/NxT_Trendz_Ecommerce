@@ -113,11 +113,11 @@ const LoginForm = () => {
   const [showSubmitError, setShowSubmitError] = useState(false)
   const [errorMsg, setErrorMsg] = useState('')
   
-  const navigate = useNavigate() // Use useNavigate instead of useHistory
+  const navigate = useNavigate() 
 
   const onSubmitSuccess = jwtToken => {
     Cookies.set('jwt_token', jwtToken, { expires: 30 })
-    navigate('/') // Corrected navigation function
+    navigate('/') 
   }
 
   const onSubmitFailure = errorMsg => {
@@ -144,7 +144,7 @@ const LoginForm = () => {
 
   const jwtToken = Cookies.get('jwt_token')
   if (jwtToken !== undefined) {
-    navigate('/') // Ensure correct redirection
+    navigate('/') 
     return null
   }
 
